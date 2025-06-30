@@ -14,7 +14,7 @@ public class FindHome : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ai.remainingDistance < 0.1f && ai.hasPath)
+        if(ai.remainingDistance < 0.5f && ai.hasPath)
         {
             Destroy(this.gameObject, 0.1f);
         }
