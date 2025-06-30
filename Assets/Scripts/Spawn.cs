@@ -3,18 +3,28 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
 
-    public GameObject skeletonPrefab;
+    public GameObject enemyPrefab;
     public Transform homeLocation;
+
+    public float startSpawnDelay = 1f;
+    public float spawnRate = 0.5f;
+    public int maxCountEnemys = 10;
+    private int currentEnemyCount = 0; 
 
     void Start()
     {
-        InvokeRepeating("Spawner", 1, 0.5f);
+        InvokeRepeating("Spawner", startSpawnDelay, spawnRate);
     }
 
     void Spawner()
     {
-        GameObject skeleton = Instantiate(skeletonPrefab, transform.position, Quaternion.identity);
-        skeleton.GetComponent<FindHome>().destination = homeLocation;
+        currentEnemyCount++;
+        if(currentEnemyCount >= maxCountEnemys)
+        {
+            CancelInvoke("Spawner");
+        }
+        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        enemy.GetComponent<FindHome>().destination = homeLocation;
     }
 
 }
