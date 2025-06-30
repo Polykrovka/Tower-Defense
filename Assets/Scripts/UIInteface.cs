@@ -4,44 +4,35 @@ public class UIInteface : MonoBehaviour
 {
     public GameObject turret;
     GameObject focusObj;
-    void Start()
-    {
-        
-    }
-
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
+        bool inputBegan = IsInputBegan();
+        bool inputHeld = IsInputHeld();
+        bool inputEnded = IsInputEnded();
+        Vector3 inputPosition = GetInputPosition();
+
+        if(inputBegan)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(!Physics.Raycast(ray, out hit))
+            Ray ray = Camera.main.ScreenPointToRay(inputPosition);
+            if(Physics.Raycast(ray, out RaycastHit hit))
             {
-                return;
+                focusObj = Instantiate(turret, hit.point, turret.transform.rotation);
+                focusObj.GetComponent<Collider>().enabled = false;
             }
-
-            focusObj = Instantiate(turret, hit.point, turret.transform.rotation);
-            focusObj.GetComponent<Collider>().enabled = false;
-
         }
-        else if(Input.GetMouseButton(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved))
+        else if(inputHeld && focusObj)
         {
-
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(!Physics.Raycast(ray, out hit) || !focusObj)
+            Ray ray = Camera.main.ScreenPointToRay(inputPosition);
+            if(Physics.Raycast(ray, out RaycastHit hit))
             {
-                return;
+                focusObj.transform.position = hit.point + new Vector3(0, 1, 0);
             }
-
-            focusObj.transform.position = hit.point + new Vector3(0, 1, 0);
         }
-        else if(focusObj && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)))
+        else if(inputEnded && focusObj)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit) &&
+            Ray ray = Camera.main.ScreenPointToRay(inputPosition);
+            if(Physics.Raycast(ray, out RaycastHit hit) &&
                 hit.collider.gameObject.CompareTag("Platform") &&
                 hit.normal.Equals(new Vector3(0,1,0)))
             {
@@ -54,7 +45,36 @@ public class UIInteface : MonoBehaviour
             }
 
             focusObj = null;
-
         }
+    }
+    bool IsInputBegan()
+    {
+        if(Input.touchCount == 1)
+            return Input.GetTouch(0).phase == TouchPhase.Began;
+        return Input.GetMouseButtonDown(0);
+    }
+
+    bool IsInputHeld()
+    {
+        if(Input.touchCount == 1)
+            return Input.GetTouch(0).phase == TouchPhase.Moved;
+        return Input.GetMouseButton(0);
+    }
+
+    bool IsInputEnded()
+    {
+        if(Input.touchCount == 1)
+        {
+            var phase = Input.GetTouch(0).phase;
+            return phase == TouchPhase.Ended || phase == TouchPhase.Canceled;
+        }
+        return Input.GetMouseButtonUp(0);
+    }
+
+    Vector3 GetInputPosition()
+    {
+        if(Input.touchCount == 1)
+            return Input.GetTouch(0).position;
+        return Input.mousePosition;
     }
 }
