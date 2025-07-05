@@ -1,10 +1,35 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class UIInteface : MonoBehaviour
 {
-    public GameObject turret;
+    public GameObject RocketLauncherTurret;
+    public GameObject GatlingTurret;
+
+    GameObject itemPrefab;
     GameObject focusObj;
 
+    public void CreteRocketLauncher()
+    {
+        itemPrefab = RocketLauncherTurret;
+        CreateItemForButton();
+    }
+
+    public void CreateGatling()
+    {
+        itemPrefab = GatlingTurret;
+        CreateItemForButton();
+    }
+
+    void CreateItemForButton()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(GetInputPosition());
+        if(Physics.Raycast(ray, out RaycastHit hit))
+        {
+            focusObj = Instantiate(itemPrefab, hit.point, itemPrefab.transform.rotation);
+            focusObj.GetComponent<Collider>().enabled = false;
+        }
+    }
     void Update()
     {
         bool inputBegan = IsInputBegan();
@@ -14,19 +39,19 @@ public class UIInteface : MonoBehaviour
 
         if(inputBegan)
         {
-            Ray ray = Camera.main.ScreenPointToRay(inputPosition);
-            if(Physics.Raycast(ray, out RaycastHit hit))
-            {
-                focusObj = Instantiate(turret, hit.point, turret.transform.rotation);
-                focusObj.GetComponent<Collider>().enabled = false;
-            }
+            //Ray ray = Camera.main.ScreenPointToRay(inputPosition);
+            //if(Physics.Raycast(ray, out RaycastHit hit))
+            //{
+            //    focusObj = Instantiate(turret, hit.point, turret.transform.rotation);
+            //    focusObj.GetComponent<Collider>().enabled = false;
+            //}
         }
         else if(inputHeld && focusObj)
         {
             Ray ray = Camera.main.ScreenPointToRay(inputPosition);
             if(Physics.Raycast(ray, out RaycastHit hit))
             {
-                focusObj.transform.position = hit.point + new Vector3(0, 1, 0);
+                focusObj.transform.position = hit.point;
             }
         }
         else if(inputEnded && focusObj)
