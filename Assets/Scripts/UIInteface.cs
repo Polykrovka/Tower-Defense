@@ -1,10 +1,14 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.EventSystems;
 
-public class UIInteface : MonoBehaviour
+public class UIInteface:MonoBehaviour
 {
     public GameObject RocketLauncherTurret;
     public GameObject GatlingTurret;
+    public GameObject flamerTurret;
+    public GameObject turretMenu;
 
     GameObject itemPrefab;
     GameObject focusObj;
@@ -19,6 +23,17 @@ public class UIInteface : MonoBehaviour
     {
         itemPrefab = GatlingTurret;
         CreateItemForButton();
+    }
+
+    public void CreateFlamer()
+    {
+        itemPrefab = flamerTurret;
+        CreateItemForButton();
+    }
+
+    public void CloseTurretMenu()
+    {
+        turretMenu.SetActive(false);
     }
 
     void CreateItemForButton()
@@ -39,12 +54,15 @@ public class UIInteface : MonoBehaviour
 
         if(inputBegan)
         {
-            //Ray ray = Camera.main.ScreenPointToRay(inputPosition);
-            //if(Physics.Raycast(ray, out RaycastHit hit))
-            //{
-            //    focusObj = Instantiate(turret, hit.point, turret.transform.rotation);
-            //    focusObj.GetComponent<Collider>().enabled = false;
-            //}
+            if(EventSystem.current.IsPointerOverGameObject()) return;
+
+            Ray ray = Camera.main.ScreenPointToRay(inputPosition);
+            if(Physics.Raycast(ray, out RaycastHit hit) &&
+                hit.collider.gameObject.CompareTag("Turret"))
+            {
+                turretMenu.transform.position = inputPosition;
+                turretMenu.SetActive(true);
+            }
         }
         else if(inputHeld && focusObj)
         {
@@ -59,10 +77,11 @@ public class UIInteface : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(inputPosition);
             if(Physics.Raycast(ray, out RaycastHit hit) &&
                 hit.collider.gameObject.CompareTag("Platform") &&
-                hit.normal.Equals(new Vector3(0,1,0)))
+                hit.normal.Equals(new Vector3(0, 1, 0)))
             {
                 hit.collider.gameObject.tag = "Occupied";
                 focusObj.transform.position = new Vector3(hit.collider.gameObject.transform.position.x, focusObj.transform.position.y, hit.collider.gameObject.transform.position.z);
+                focusObj.GetComponent<Collider>().enabled = true;
             }
             else
             {
