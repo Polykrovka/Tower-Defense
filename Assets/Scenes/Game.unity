@@ -1909,23 +1909,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &686926787 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4652777268153519506, guid: fdf88fe4d5e04ce47bd19e1ce9f95da4, type: 3}
-  m_PrefabInstance: {fileID: 2575947470642518546}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &686926788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686926787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5774eb4f926c5194db78b7d715e04ca6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &806462183
 GameObject:
   m_ObjectHideFlags: 0
@@ -4028,7 +4011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8144366810318371645, guid: 85c3581977976da4a90ff8517883a2b3, type: 3}
   homeLocation: {fileID: 1855531432}
-  startSpawnDelay: 2
+  startSpawnDelay: 5
   spawnRate: 0.5
   maxCountEnemys: 10
 --- !u!65 &1421503409
@@ -6329,17 +6312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket Launcher
       objectReference: {fileID: 0}
-    - target: {fileID: 7619028149768985902, guid: fdf88fe4d5e04ce47bd19e1ce9f95da4, type: 3}
-      propertyPath: m_Radius
-      value: 0.06
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4652777268153519506, guid: fdf88fe4d5e04ce47bd19e1ce9f95da4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 686926788}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdf88fe4d5e04ce47bd19e1ce9f95da4, type: 3}
 --- !u!1001 &8456479727800023361
 PrefabInstance:

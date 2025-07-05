@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 2372076365715007660}
   - component: {fileID: 2224628248007358205}
   - component: {fileID: 7619028149768985902}
+  - component: {fileID: 9107645448191781121}
   m_Layer: 0
   m_Name: Rocket Launcher
   m_TagString: Turret
@@ -474,8 +475,22 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.03
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0.0009667812, z: 0}
+--- !u!114 &9107645448191781121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652777268153519506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5774eb4f926c5194db78b7d715e04ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  core: {fileID: 789598306335827853}
+  gun: {fileID: 7965732045365830625}
 --- !u!1 &5096424687199258721
 GameObject:
   m_ObjectHideFlags: 0
