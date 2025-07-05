@@ -48,7 +48,7 @@ public class Shoot : MonoBehaviour
             core.transform.rotation = Quaternion.Slerp(
                 core.transform.rotation,
                 Quaternion.LookRotation(aimAt - core.transform.position),
-                Time.deltaTime
+                Time.deltaTime * 2
             );
 
             // Vertical rotation for gun (relative to core)
@@ -61,15 +61,22 @@ public class Shoot : MonoBehaviour
             gun.transform.localRotation = Quaternion.Slerp(
                 gun.transform.localRotation,
                 gunTargetRot,
-                Time.deltaTime
+                Time.deltaTime * 2
             );
 
-            ShootTarget();
+
+            Vector3 directionToTrget = currentTurget.transform.position - gun.transform.position;
+            if(Vector3.Angle(directionToTrget, gun.transform.forward) < 10) //10 degrees is the accuracy
+            {
+                // If the target is within a certain angle, shoot
+                ShootTarget();
+            }
+
         }
         else
         {
-            core.transform.rotation = Quaternion.Slerp(core.transform.rotation, coreStartRotation, Time.deltaTime);
-            gun.transform.localRotation = Quaternion.Slerp(gun.transform.localRotation, gunStartRotation, Time.deltaTime);
+            core.transform.rotation = Quaternion.Slerp(core.transform.rotation, coreStartRotation, Time.deltaTime * 2);
+            gun.transform.localRotation = Quaternion.Slerp(gun.transform.localRotation, gunStartRotation, Time.deltaTime * 2);
         }
     }
 }
