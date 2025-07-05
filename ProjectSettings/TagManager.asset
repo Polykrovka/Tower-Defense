@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Platform
   - Occupied
+  - Turret
+  - Enemy
   layers:
   - Default
   - TransparentFX
