@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453c9f1c366b01f408e5105997d8538e, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
-  enemyName: 
-  speed: 0
-  maxHealth: 0
+  enemyName: Skeleton
+  speed: 2
+  maxHealth: 200
