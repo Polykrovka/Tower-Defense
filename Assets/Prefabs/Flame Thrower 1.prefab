@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   core: {fileID: 5898423449889839467}
   gun: {fileID: 8521056012970724170}
-  turretDetails: {fileID: 0}
+  turretDetails: {fileID: 11400000, guid: 09cda70f51885ee4a9b8338c5249bd4a, type: 2}
   shootSound: {fileID: 5711596509874727174}
 --- !u!65 &8184399994817562744
 BoxCollider:
@@ -183,7 +183,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.07
+  m_Radius: 0.06
   m_Center: {x: 0, y: 0.0009667812, z: 0}
 --- !u!82 &5711596509874727174
 AudioSource:
