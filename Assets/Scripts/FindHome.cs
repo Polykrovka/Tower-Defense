@@ -7,7 +7,7 @@ public class FindHome : MonoBehaviour
     public Transform destination;
     NavMeshAgent ai;
     public EnemyDetails enemyDetails;
-    int currentHealth;
+    float currentHealth;
     public Slider healthBarPrefab;
     Slider healthBar;
 
@@ -24,7 +24,7 @@ public class FindHome : MonoBehaviour
         healthBar.value = enemyDetails.maxHealth;
     }
 
-    public void Hit(int power)
+    public void Hit(float power)
     {
         if(healthBar)
         {

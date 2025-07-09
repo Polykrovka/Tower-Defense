@@ -42,7 +42,8 @@ public class UIInteface:MonoBehaviour
         if(Physics.Raycast(ray, out RaycastHit hit))
         {
             focusObj = Instantiate(itemPrefab, hit.point, itemPrefab.transform.rotation);
-            focusObj.GetComponent<Collider>().enabled = false;
+            foreach (var col in focusObj.GetComponentsInChildren<Collider>())
+                col.enabled = false;
         }
     }
     void Update()
@@ -81,7 +82,8 @@ public class UIInteface:MonoBehaviour
             {
                 hit.collider.gameObject.tag = "Occupied";
                 focusObj.transform.position = new Vector3(hit.collider.gameObject.transform.position.x, focusObj.transform.position.y, hit.collider.gameObject.transform.position.z);
-                focusObj.GetComponent<Collider>().enabled = true;
+                foreach (var col in focusObj.GetComponentsInChildren<Collider>())
+                    col.enabled = true;
             }
             else
             {

@@ -6,6 +6,8 @@ public class Shoot : MonoBehaviour
     FindHome currentTargetScript;
     public GameObject core;
     public GameObject gun;
+    public TurretDetails turretDetails;
+    public AudioSource shootSound;
     Quaternion coreStartRotation;
     Quaternion gunStartRotation;
 
@@ -30,11 +32,20 @@ public class Shoot : MonoBehaviour
         gunStartRotation = gun.transform.localRotation;
     }
 
+    bool shootColdown = false;
+
+    void ShootColdown()
+    {
+        shootColdown = false;
+    }
     void ShootTarget()
     {
-        if(currentTurget)
+        if(currentTurget && !shootColdown)
         {
-            currentTargetScript.GetComponent<FindHome>().Hit(1);
+            currentTargetScript.GetComponent<FindHome>().Hit(turretDetails.damage);
+            shootSound.Play();
+            shootColdown = true;
+            Invoke("ShootColdown", turretDetails.reloadTime);
         }
     }
 
@@ -48,7 +59,7 @@ public class Shoot : MonoBehaviour
             core.transform.rotation = Quaternion.Slerp(
                 core.transform.rotation,
                 Quaternion.LookRotation(aimAt - core.transform.position),
-                Time.deltaTime * 2
+                Time.deltaTime * turretDetails.RotationSpeed
             );
 
             // Vertical rotation for gun (relative to core)
@@ -61,22 +72,22 @@ public class Shoot : MonoBehaviour
             gun.transform.localRotation = Quaternion.Slerp(
                 gun.transform.localRotation,
                 gunTargetRot,
-                Time.deltaTime * 2
+                Time.deltaTime * turretDetails.RotationSpeed
             );
 
 
             Vector3 directionToTrget = currentTurget.transform.position - gun.transform.position;
-            if(Vector3.Angle(directionToTrget, gun.transform.forward) < 10) //10 degrees is the accuracy
+            if(Vector3.Angle(directionToTrget, gun.transform.forward) < turretDetails.angleAccuracy)  // If the target is within a certain angle, shoot
             {
-                // If the target is within a certain angle, shoot
-                ShootTarget();
+                if(Random.Range(0, 100) < turretDetails.accuracy)
+                    ShootTarget();
             }
 
         }
         else
         {
-            core.transform.rotation = Quaternion.Slerp(core.transform.rotation, coreStartRotation, Time.deltaTime * 2);
-            gun.transform.localRotation = Quaternion.Slerp(gun.transform.localRotation, gunStartRotation, Time.deltaTime * 2);
+            core.transform.rotation = Quaternion.Slerp(core.transform.rotation, coreStartRotation, Time.deltaTime * turretDetails.RotationSpeed);
+            gun.transform.localRotation = Quaternion.Slerp(gun.transform.localRotation, gunStartRotation, Time.deltaTime * turretDetails.RotationSpeed);
         }
     }
 }
