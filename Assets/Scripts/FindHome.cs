@@ -10,8 +10,7 @@ public class FindHome : MonoBehaviour
     float currentHealth;
     public Slider healthBarPrefab;
     Slider healthBar;
-    public static ParticleSystem rocketHitEffectPrefab;
-
+    public ParticleSystem rocketHitEffectPrefab;
 
 
     void Start()
