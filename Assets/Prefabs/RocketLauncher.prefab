@@ -8,17 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8824302225255902046, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -1.0624113
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.08
+      value: 16.46735
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -64,6 +68,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 2f8473c70fb8b2244a9f91ce1e7a79c3, type: 2}
+    - target: {fileID: -2894082049617891353, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2871905452074478381, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -2164695056108027802, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -72,13 +84,41 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 2f8473c70fb8b2244a9f91ce1e7a79c3, type: 2}
+    - target: {fileID: 828610950529570266, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
       propertyPath: m_Name
       value: RocketLauncher
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
       propertyPath: m_TagString
       value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580238261815984728, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873965599755817481, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690268580520552603, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789855171081233378, guid: 262478772945c364b8cde636ecb4dde2, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -183,7 +223,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 206a608f4b4e45f4f88d72c70570ca49, type: 3}
   m_Resource: {fileID: 8300000, guid: 206a608f4b4e45f4f88d72c70570ca49, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.446
   m_Pitch: 1
   Loop: 0
   Mute: 0

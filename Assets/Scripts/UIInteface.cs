@@ -68,15 +68,16 @@ public class UIInteface:MonoBehaviour
         else if(inputHeld && focusObj)
         {
             Ray ray = Camera.main.ScreenPointToRay(inputPosition);
-            if(Physics.Raycast(ray, out RaycastHit hit))
+            if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Turret"))))
             {
+                
                 focusObj.transform.position = hit.point;
             }
         }
         else if(inputEnded && focusObj)
         {
             Ray ray = Camera.main.ScreenPointToRay(inputPosition);
-            if(Physics.Raycast(ray, out RaycastHit hit) &&
+            if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Turret"))) &&
                 hit.collider.gameObject.CompareTag("Platform") &&
                 hit.normal.Equals(new Vector3(0, 1, 0)))
             {

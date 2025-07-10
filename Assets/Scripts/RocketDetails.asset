@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973f6c1ba2bb29740938abf5a7deaf8f, type: 3}
   m_Name: RocketDetails
   m_EditorClassIdentifier: 
-  damage: 90
+  damage: 150
   accuracy: 85
   RotationSpeed: 5
   reloadTime: 3
