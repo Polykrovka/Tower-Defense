@@ -4139,10 +4139,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5072214040666514867, guid: e39d0f1290c847f41a13bbbfff20fe2f, type: 3}
-      propertyPath: shootSound
-      value: 
-      objectReference: {fileID: 1895552876}
     - target: {fileID: 7425275651508116827, guid: e39d0f1290c847f41a13bbbfff20fe2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.0624113
@@ -6090,11 +6086,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893871578}
   m_CullTransparentMesh: 1
---- !u!82 &1895552876 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1453049192055166335, guid: 575373271c0c3e1439e2c8cf0bea80a6, type: 3}
-  m_PrefabInstance: {fileID: 8480008173585574827}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1943027402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8858051749441068820, guid: 4c67ed6c086451b4db54ac4d24b626bb, type: 3}
@@ -6870,6 +6861,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1453049192055166335, guid: 575373271c0c3e1439e2c8cf0bea80a6, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: acbcb75601b0082458fda8807f67c813, type: 3}
+    - target: {fileID: 1453049192055166335, guid: 575373271c0c3e1439e2c8cf0bea80a6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: acbcb75601b0082458fda8807f67c813, type: 3}
     - target: {fileID: 5237879796333706077, guid: 575373271c0c3e1439e2c8cf0bea80a6, type: 3}
       propertyPath: m_Name
       value: Explosion
