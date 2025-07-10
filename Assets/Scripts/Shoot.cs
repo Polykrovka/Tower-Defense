@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Shoot : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Shoot : MonoBehaviour
     public GameObject gun;
     public TurretDetails turretDetails;
     public AudioSource shootSound;
+    public List<ParticleSystem> shootParticles;
+    public int particleCount = 15;
     Quaternion coreStartRotation;
     Quaternion gunStartRotation;
 
@@ -30,6 +33,10 @@ public class Shoot : MonoBehaviour
     {
         coreStartRotation = core.transform.rotation;
         gunStartRotation = gun.transform.localRotation;
+
+
+        foreach (var particle in shootParticles)
+            particle.Stop();
     }
 
     bool shootColdown = false;
@@ -44,9 +51,18 @@ public class Shoot : MonoBehaviour
         {
             currentTargetScript.GetComponent<FindHome>().Hit(turretDetails.damage);
             shootSound.Play();
+            foreach(var particle in shootParticles)
+                particle.Play();
+            Invoke("stopParticales", turretDetails.reloadTime > 1 ? turretDetails.reloadTime : 1); 
             shootColdown = true;
             Invoke("ShootColdown", turretDetails.reloadTime);
         }
+    }
+
+    void stopParticales()
+    {
+        foreach(var particle in shootParticles)
+            particle.Stop();
     }
 
     void Update()
@@ -86,8 +102,8 @@ public class Shoot : MonoBehaviour
         }
         else
         {
-            core.transform.rotation = Quaternion.Slerp(core.transform.rotation, coreStartRotation, Time.deltaTime * turretDetails.RotationSpeed);
-            gun.transform.localRotation = Quaternion.Slerp(gun.transform.localRotation, gunStartRotation, Time.deltaTime * turretDetails.RotationSpeed);
+            core.transform.rotation = Quaternion.Slerp(core.transform.rotation, coreStartRotation, Time.deltaTime * (turretDetails.RotationSpeed / 2));
+            gun.transform.localRotation = Quaternion.Slerp(gun.transform.localRotation, gunStartRotation, Time.deltaTime * (turretDetails.RotationSpeed / 2));
         }
     }
 }

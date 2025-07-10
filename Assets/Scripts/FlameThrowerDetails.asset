@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   accuracy: 95
-  RotationSpeed: 4
+  RotationSpeed: 1.5
   reloadTime: 3
   angleAccuracy: 30

@@ -4077,6 +4077,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5154362022497517520, guid: 77f664ca9e40c7f42a463551eb15515d, type: 3}
+      propertyPath: particleCount
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7329818810873131216, guid: 77f664ca9e40c7f42a463551eb15515d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.3469918
@@ -4120,10 +4124,6 @@ PrefabInstance:
     - target: {fileID: 7994856852991109738, guid: 77f664ca9e40c7f42a463551eb15515d, type: 3}
       propertyPath: m_Name
       value: Flame Thrower 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7994856852991109738, guid: 77f664ca9e40c7f42a463551eb15515d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4657,13 +4657,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 99988253928347051, guid: b8aa8f66187f2114c8aed373dd58b62d, type: 3}
+      propertyPath: particleCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3733524157836127109, guid: b8aa8f66187f2114c8aed373dd58b62d, type: 3}
       propertyPath: m_Name
       value: Gatling
-      objectReference: {fileID: 0}
-    - target: {fileID: 3733524157836127109, guid: b8aa8f66187f2114c8aed373dd58b62d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4079123114831196479, guid: b8aa8f66187f2114c8aed373dd58b62d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6708,6 +6708,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1436321002033143404, guid: ef538bf573f21c24da178284108aec62, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2274852967421178662, guid: ef538bf573f21c24da178284108aec62, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2274852968356516529, guid: ef538bf573f21c24da178284108aec62, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4884404095470574845, guid: ef538bf573f21c24da178284108aec62, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.43
@@ -6751,6 +6763,10 @@ PrefabInstance:
     - target: {fileID: 5225076110509524551, guid: ef538bf573f21c24da178284108aec62, type: 3}
       propertyPath: m_Name
       value: portal S
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191900818712928740, guid: ef538bf573f21c24da178284108aec62, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
