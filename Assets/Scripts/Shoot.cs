@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Shoot : MonoBehaviour
+public class Shoot:MonoBehaviour
 {
     GameObject currentTurget;
     FindHome currentTargetScript;
@@ -34,9 +34,11 @@ public class Shoot : MonoBehaviour
         coreStartRotation = core.transform.rotation;
         gunStartRotation = gun.transform.localRotation;
 
-
-        foreach (var particle in shootParticles)
-            particle.Stop();
+        if(shootParticles != null)
+        {
+            foreach(var particle in shootParticles)
+                particle.Stop();
+        }
     }
 
     bool shootColdown = false;
@@ -51,9 +53,13 @@ public class Shoot : MonoBehaviour
         {
             currentTargetScript.GetComponent<FindHome>().Hit(turretDetails.damage);
             shootSound.Play();
-            foreach(var particle in shootParticles)
-                particle.Play();
-            Invoke("stopParticales", turretDetails.reloadTime > 1 ? turretDetails.reloadTime : 1); 
+            if(shootParticles != null)
+            {
+
+                foreach(var particle in shootParticles)
+                    particle.Play();
+            }
+            Invoke("stopParticales", turretDetails.reloadTime > 1 ? turretDetails.reloadTime : 1);
             shootColdown = true;
             Invoke("ShootColdown", turretDetails.reloadTime);
         }
@@ -61,8 +67,12 @@ public class Shoot : MonoBehaviour
 
     void stopParticales()
     {
-        foreach(var particle in shootParticles)
-            particle.Stop();
+        if(shootParticles != null)
+        {
+
+            foreach(var particle in shootParticles)
+                particle.Stop();
+        }
     }
 
     void Update()

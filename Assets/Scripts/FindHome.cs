@@ -34,6 +34,7 @@ public class FindHome : MonoBehaviour
                 LevelManager.RemoveEnemy();//Just decrease enemis count
                 ai.ResetPath();
 
+                LevelManager.DisplayDeathExplosion(this.transform.position + new Vector3(0, 1, 0));
                 Destroy(healthBar.gameObject);
                 Destroy(this.gameObject, 0.1f);
             }
