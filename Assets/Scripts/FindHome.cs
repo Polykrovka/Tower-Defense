@@ -10,6 +10,8 @@ public class FindHome : MonoBehaviour
     float currentHealth;
     public Slider healthBarPrefab;
     Slider healthBar;
+    public static ParticleSystem rocketHitEffectPrefab;
+
 
 
     void Start()
@@ -24,8 +26,14 @@ public class FindHome : MonoBehaviour
         healthBar.value = enemyDetails.maxHealth;
     }
 
-    public void Hit(float power)
+    public void Hit(float power, TurretDetails.TurretType turretType)
     {
+        if(turretType == TurretDetails.TurretType.RocketLauncher)
+        {
+                ParticleSystem ps = Object.Instantiate(rocketHitEffectPrefab, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                ps.Play();
+        }
+
         if(healthBar)
         {
             healthBar.value -= power;
@@ -40,7 +48,6 @@ public class FindHome : MonoBehaviour
             }
         }
     }
-
 
     void Update()
     {

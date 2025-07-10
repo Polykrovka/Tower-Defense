@@ -211,7 +211,7 @@ MonoBehaviour:
   turretDetails: {fileID: 11400000, guid: 9e53bd797d81e5345a5302e348be3cc0, type: 2}
   shootSound: {fileID: 5329116698418780893}
   shootParticles: []
-  particleCount: 5
+  particleCount: 1
 --- !u!82 &5329116698418780893
 AudioSource:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 82afb4e8ed684f64797c9ef6d3778c2b, type: 3}
   m_Resource: {fileID: 8300000, guid: 82afb4e8ed684f64797c9ef6d3778c2b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.114
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973f6c1ba2bb29740938abf5a7deaf8f, type: 3}
   m_Name: FlameThrowerDetails
   m_EditorClassIdentifier: 
+  turretType: 2
   damage: 100
   accuracy: 95
   RotationSpeed: 1.5

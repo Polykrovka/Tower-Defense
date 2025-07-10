@@ -16,7 +16,7 @@ public class Shoot:MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy") && currentTurget == null)
+        if (other.CompareTag("Enemy") && currentTurget == null)
         {
             currentTurget = other.gameObject;
             currentTargetScript = currentTurget.GetComponent<FindHome>();
@@ -33,7 +33,6 @@ public class Shoot:MonoBehaviour
     {
         coreStartRotation = core.transform.rotation;
         gunStartRotation = gun.transform.localRotation;
-
         if(shootParticles != null)
         {
             foreach(var particle in shootParticles)
@@ -47,16 +46,16 @@ public class Shoot:MonoBehaviour
     {
         shootColdown = false;
     }
+
     void ShootTarget()
     {
-        if(currentTurget && !shootColdown)
+        if (currentTurget && !shootColdown)
         {
-            currentTargetScript.GetComponent<FindHome>().Hit(turretDetails.damage);
+            currentTargetScript.GetComponent<FindHome>().Hit(turretDetails.damage, turretDetails.turretType);
             shootSound.Play();
-            if(shootParticles != null)
+            if (shootParticles != null)
             {
-
-                foreach(var particle in shootParticles)
+                foreach (var particle in shootParticles)
                     particle.Play();
             }
             Invoke("stopParticales", turretDetails.reloadTime > 1 ? turretDetails.reloadTime : 1);

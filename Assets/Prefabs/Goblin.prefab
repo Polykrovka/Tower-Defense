@@ -139,6 +139,7 @@ MonoBehaviour:
   destination: {fileID: 0}
   enemyDetails: {fileID: 11400000, guid: 0455f4ab327f6b743b6a1e4e442ea04d, type: 2}
   healthBarPrefab: {fileID: 2889686861373011936, guid: ce3747cbe4a3782488cdebea04b8ebe2, type: 3}
+  rocketHitEffectPrefab: {fileID: 8328915316107754981, guid: 575373271c0c3e1439e2c8cf0bea80a6, type: 3}
 --- !u!54 &8438624560677912242
 Rigidbody:
   m_ObjectHideFlags: 0
