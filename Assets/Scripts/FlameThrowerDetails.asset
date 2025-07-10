@@ -18,3 +18,4 @@ MonoBehaviour:
   RotationSpeed: 1.5
   reloadTime: 3
   angleAccuracy: 30
+  aoeRadius: 2

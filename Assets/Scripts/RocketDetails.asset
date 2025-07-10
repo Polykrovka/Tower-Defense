@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973f6c1ba2bb29740938abf5a7deaf8f, type: 3}
   m_Name: RocketDetails
   m_EditorClassIdentifier: 
-  damage: 150
+  turretType: 0
+  damage: 80
   accuracy: 85
   RotationSpeed: 5
   reloadTime: 3
   angleAccuracy: 25
+  aoeRadius: 3

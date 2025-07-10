@@ -107,7 +107,7 @@ public class Shoot:MonoBehaviour
     {
         if (currentTurget && !shootColdown)
         {
-            currentTargetScript.GetComponent<FindHome>().Hit(turretDetails.damage, turretDetails.turretType);
+            currentTargetScript.GetComponent<FindHome>().Hit(turretDetails);
             shootSound.Play();
             if (shootParticles != null)
             {

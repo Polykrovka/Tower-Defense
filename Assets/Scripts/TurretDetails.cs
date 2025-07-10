@@ -10,4 +10,5 @@ public class TurretDetails : ScriptableObject
     public float RotationSpeed;
     public float reloadTime;
     public float angleAccuracy;
+    public float aoeRadius = 3f;
 }

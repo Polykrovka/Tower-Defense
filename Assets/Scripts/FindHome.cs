@@ -28,14 +28,38 @@ public class FindHome : MonoBehaviour
         healthBar.value = enemyDetails.maxHealth;
     }
 
-    public void Hit(float power, TurretDetails.TurretType turretType)
+    public void Hit(TurretDetails turretDetails)
     {
-        if(turretType == TurretDetails.TurretType.RocketLauncher)
+        float power = turretDetails.damage;
+        float aoeRadius = turretDetails.aoeRadius;
+
+        if(turretDetails.turretType == TurretDetails.TurretType.RocketLauncher)
         {
-                ParticleSystem ps = Object.Instantiate(rocketHitEffectPrefab, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                ps.Play();
+            ParticleSystem ps = Object.Instantiate(rocketHitEffectPrefab, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            ps.Play();
         }
 
+        if(aoeRadius > 0f)
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, aoeRadius);
+            foreach(var hit in hitColliders)
+            {
+                if(hit.CompareTag("Enemy"))
+                {
+                    FindHome enemy = hit.GetComponent<FindHome>();
+                    if(enemy != null)
+                        enemy.ReduceHealth(power);
+                }
+            }
+        }
+        else
+        {
+            ReduceHealth(power);
+        }
+    }
+
+    public void ReduceHealth(float power)
+    {
         if(healthBar)
         {
             healthBar.value -= power;
