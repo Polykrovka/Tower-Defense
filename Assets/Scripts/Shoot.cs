@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using static FindHome;
 
 public class Shoot:MonoBehaviour
 {
@@ -14,19 +15,54 @@ public class Shoot:MonoBehaviour
     Quaternion coreStartRotation;
     Quaternion gunStartRotation;
 
+    List<GameObject> enemiesInRange = new List<GameObject>();
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && currentTurget == null)
+        if(other.gameObject != null && other.CompareTag("Enemy") && !enemiesInRange.Contains(other.gameObject))
         {
-            currentTurget = other.gameObject;
-            currentTargetScript = currentTurget.GetComponent<FindHome>();
+            enemiesInRange.Add(other.gameObject);
+            CleanupDeadEnemies();
+            if(currentTurget == null)
+                UpdateTarget();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
+        enemiesInRange.Remove(other.gameObject);
         if(other.gameObject == currentTurget)
+        {
             currentTurget = null;
+            UpdateTarget();
+        }
+    }
+
+    void UpdateTarget()
+    {
+        CleanupDeadEnemies();
+
+        if(enemiesInRange.Count > 0)
+        {
+            currentTurget = enemiesInRange[0];
+            if(currentTurget != null)
+                currentTargetScript = currentTurget.GetComponent<FindHome>();
+            else
+            {
+                currentTurget = null;
+                currentTargetScript = null;
+            }
+        }
+        else
+        {
+            currentTurget = null;
+            currentTargetScript = null;
+        }
+    }
+
+    void CleanupDeadEnemies()
+    {
+        enemiesInRange.RemoveAll(enemy => enemy == null);
     }
 
     void Start()
@@ -37,6 +73,26 @@ public class Shoot:MonoBehaviour
         {
             foreach(var particle in shootParticles)
                 particle.Stop();
+        }
+
+        FindHome.OnEnemyDeath += OnEnemyDeathHandler;
+    }
+
+    void OnDestroy()
+    {
+        FindHome.OnEnemyDeath -= OnEnemyDeathHandler;
+    }
+
+    void OnEnemyDeathHandler(GameObject enemy)
+    {
+        if(enemiesInRange.Contains(enemy))
+            enemiesInRange.Remove(enemy);
+
+        if(enemy == currentTurget)
+        {
+            currentTurget = null;
+            currentTargetScript = null;
+            UpdateTarget();
         }
     }
 

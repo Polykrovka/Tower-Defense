@@ -144,6 +144,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &27242715
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -651,6 +652,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &185822870
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1418,6 +1420,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &426826015
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1465,6 +1468,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &437929672
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1574,6 +1578,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &522416618
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3372,6 +3377,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &1206040568
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3677,6 +3683,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &1304540157
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4048,6 +4055,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &1370836371
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5351,6 +5359,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &1769463746
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5465,6 +5474,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &1773967739
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6188,6 +6198,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &1943027405
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6453,6 +6464,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &2010028723
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6636,6 +6648,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &2066580318
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6683,6 +6696,7 @@ MonoBehaviour:
   destination: {fileID: 1855531432}
   enemyDetails: {fileID: 0}
   healthBarPrefab: {fileID: 0}
+  rocketHitEffectPrefab: {fileID: 0}
 --- !u!195 &2138097235
 NavMeshAgent:
   m_ObjectHideFlags: 0

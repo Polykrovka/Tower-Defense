@@ -12,6 +12,9 @@ public class FindHome : MonoBehaviour
     Slider healthBar;
     public ParticleSystem rocketHitEffectPrefab;
 
+    public delegate void EnemyDeathHandler(GameObject enemy);
+    public static event EnemyDeathHandler OnEnemyDeath;
+
 
     void Start()
     {
@@ -44,6 +47,7 @@ public class FindHome : MonoBehaviour
                 LevelManager.DisplayDeathExplosion(this.transform.position + new Vector3(0, 1, 0));
                 Destroy(healthBar.gameObject);
                 Destroy(this.gameObject, 0.1f);
+                OnEnemyDeath?.Invoke(this.gameObject); // Notify subscribers about enemy death
             }
         }
     }
