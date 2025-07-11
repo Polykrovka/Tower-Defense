@@ -25,7 +25,7 @@ public class FindHome : MonoBehaviour
         healthBar = Instantiate(healthBarPrefab, this.transform.position, Quaternion.identity);
         healthBar.transform.SetParent(GameObject.Find("Canvas").transform);
         healthBar.maxValue = enemyDetails.maxHealth;
-        healthBar.value = enemyDetails.maxHealth;
+        healthBar.value = enemyDetails.maxHealth;git g
     }
 
     public void Hit(TurretDetails turretDetails)
