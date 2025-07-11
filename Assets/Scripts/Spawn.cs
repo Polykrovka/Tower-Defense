@@ -13,11 +13,19 @@ public class Spawn : MonoBehaviour
 
     void Start()
     {
+        Restart();
+    }
+
+    public void Restart()
+    {
+        Debug.Log("Restart");
+        currentEnemyCount = 0;
         InvokeRepeating("Spawner", startSpawnDelay, spawnRate);
     }
 
     void Spawner()
     {
+        Debug.Log("Spawner " + currentEnemyCount);
         currentEnemyCount++;
         if(currentEnemyCount >= maxCountEnemys)
         {

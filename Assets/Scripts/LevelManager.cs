@@ -2,16 +2,28 @@ using UnityEngine;
 using UnityEngine.Pool;
 public class LevelManager : MonoBehaviour
 {
-    GameObject[] spawnPoints;
+    Spawn[] spawnPoints;
     static int totalEnemies = 0;
+    static int numberOfWaves = 4;
+    static int wavesEmitted = 0;
+    static bool levelOver = false;
+    static bool nextWave = false;
+
+    int timeBetweenWaves = 5;
+
+
     public ParticleSystem deathParticalePrefab;
     public static IObjectPool<ParticleSystem> deathParticalePool;
     void Start()
     {
-        spawnPoints = GameObject.FindGameObjectsWithTag("Spawn");
-        foreach(GameObject sp in spawnPoints)
+
+        Time.timeScale =  20; 
+        GameObject[] spawnP = GameObject.FindGameObjectsWithTag("Spawn");
+        spawnPoints = new Spawn[spawnP.Length];
+        for(int i = 0; i < spawnP.Length; i++)
         {
-            totalEnemies += sp.GetComponent<Spawn>().maxCountEnemys;
+            spawnPoints[i] = spawnP[i].GetComponent<Spawn>();
+            totalEnemies += spawnPoints[i].maxCountEnemys;
         }
 
         deathParticalePool = new ObjectPool<ParticleSystem>(
@@ -22,7 +34,6 @@ public class LevelManager : MonoBehaviour
             true, 10, 30
         );
 
-        Debug.Log("Total enemies to defeat: " + totalEnemies);
     }
 
     ParticleSystem CreateDeathParticle()
@@ -59,7 +70,38 @@ public class LevelManager : MonoBehaviour
         totalEnemies--;
         if(totalEnemies <= 0)
         {
-            Debug.Log("All enemies defeated!");
+            wavesEmitted++;
+            nextWave = true;
+
+            if(wavesEmitted >= numberOfWaves)
+            {
+                levelOver = true;
+                nextWave = false;
+            }
+        }
+    }
+
+    void ResetSpawners()
+    {
+        foreach(Spawn sp in spawnPoints)
+        {
+            totalEnemies += sp.maxCountEnemys;
+            sp.Restart();
+        }
+    }
+
+    void Update()
+    {
+        if(nextWave)
+        {
+            nextWave = false;
+            foreach(Spawn sp in spawnPoints)
+            {
+                totalEnemies += sp.maxCountEnemys;
+                sp.Restart();
+            }
+            Invoke("ResetSpawners", timeBetweenWaves);
+
         }
     }
 }

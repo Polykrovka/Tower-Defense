@@ -80,6 +80,7 @@ public class FindHome : MonoBehaviour
     {
         if(ai.remainingDistance < 0.5f && ai.hasPath)
         {
+            Debug.Log("RemoveEnemy");
             LevelManager.RemoveEnemy();//Just decrease enemis count
             ai.ResetPath();
 
