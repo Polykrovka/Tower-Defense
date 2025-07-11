@@ -2,6 +2,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 
 public class UIInteface:MonoBehaviour
 {
@@ -10,9 +12,48 @@ public class UIInteface:MonoBehaviour
     public GameObject flamerTurret;
     public GameObject turretMenu;
     public TMPro.TMP_Text waveText;
+    public TMPro.TMP_Text moneyText;
+    public TMPro.TMP_Text livesText;
+
+
+    public Button setSpeedPause;
+    public Button setSpeedOne;
+    public Button setSpeedTwo;
+    public Button setSpeedThree;
+
+
+
 
     GameObject itemPrefab;
     GameObject focusObj;
+
+    private void Start()
+    {
+        setSpeedPause.onClick.AddListener(SpeedPauseClicked);
+        setSpeedOne.onClick.AddListener(SpeedOneClicked);
+        setSpeedTwo.onClick.AddListener(SpeedTwoClicked);
+        setSpeedThree.onClick.AddListener(SpeedThreeClicked);
+    }
+
+    void SpeedOneClicked()
+    {
+        LevelManager.setGameSpeed(1);
+    }
+
+    void SpeedTwoClicked()
+    {
+        LevelManager.setGameSpeed(2);
+    }
+
+    void SpeedThreeClicked()
+    {
+        LevelManager.setGameSpeed(3);
+    }
+
+    void SpeedPauseClicked()
+    {
+        LevelManager.setGameSpeed(0);
+    }
 
     public void CreteRocketLauncher()
     {
@@ -53,6 +94,12 @@ public class UIInteface:MonoBehaviour
         {
             waveText.text = "Wave: " + (LevelManager.wavesEmitted + 1) + "/" + LevelManager.numberOfWaves;
 
+        }
+
+        moneyText.text = "Gold: " + LevelManager.totalMoney;
+        if(LevelManager.totalLives >= 0)
+        {
+            livesText.text = "Lives: " + LevelManager.totalLives;
         }
 
 

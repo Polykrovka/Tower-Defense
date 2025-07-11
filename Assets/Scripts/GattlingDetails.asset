@@ -19,3 +19,4 @@ MonoBehaviour:
   reloadTime: 0.14
   angleAccuracy: 25
   aoeRadius: 0
+  moneyCost: 20

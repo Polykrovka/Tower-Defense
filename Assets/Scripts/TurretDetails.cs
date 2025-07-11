@@ -11,4 +11,5 @@ public class TurretDetails : ScriptableObject
     public float reloadTime;
     public float angleAccuracy;
     public float aoeRadius = 3f;
+    public float moneyCost;
 }

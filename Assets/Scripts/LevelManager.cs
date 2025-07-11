@@ -6,6 +6,8 @@ public class LevelManager : MonoBehaviour
     static int totalEnemies = 0;
     public static int numberOfWaves = 4;
     public static int wavesEmitted = 0;
+    public static int totalMoney = 0;
+    public static int totalLives = 10;
     static bool levelOver = false;
     static bool nextWave = false;
 
@@ -17,7 +19,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
 
-        Time.timeScale =  20; 
+        Time.timeScale =  1; 
         GameObject[] spawnP = GameObject.FindGameObjectsWithTag("Spawn");
         spawnPoints = new Spawn[spawnP.Length];
         for(int i = 0; i < spawnP.Length; i++)
@@ -34,6 +36,11 @@ public class LevelManager : MonoBehaviour
             true, 10, 30
         );
 
+    }
+
+    public static void setGameSpeed(int speed) 
+    { 
+        Time.timeScale = speed;
     }
 
     ParticleSystem CreateDeathParticle()
@@ -78,6 +85,16 @@ public class LevelManager : MonoBehaviour
                 levelOver = true;
                 nextWave = false;
             }
+        }
+    }
+
+    public static void RemoveLive()
+    {
+        totalLives--;
+        if(totalLives <= 0)
+        {
+            levelOver = true;
+            nextWave = false;
         }
     }
 

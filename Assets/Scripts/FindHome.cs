@@ -65,6 +65,7 @@ public class FindHome : MonoBehaviour
             healthBar.value -= power;
             if(healthBar.value <= 0 && ai.hasPath)
             {
+                LevelManager.totalMoney += enemyDetails.moneyReward;
                 LevelManager.RemoveEnemy();//Just decrease enemis count
                 ai.ResetPath();
 
@@ -81,7 +82,8 @@ public class FindHome : MonoBehaviour
         if(ai.remainingDistance < 0.5f && ai.hasPath)
         {
             Debug.Log("RemoveEnemy");
-            LevelManager.RemoveEnemy();//Just decrease enemis count
+            LevelManager.RemoveEnemy();
+            LevelManager.RemoveLive();
             ai.ResetPath();
 
             Destroy(healthBar.gameObject);

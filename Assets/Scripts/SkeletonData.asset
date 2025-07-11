@@ -15,3 +15,4 @@ MonoBehaviour:
   enemyName: Skeleton
   speed: 2
   maxHealth: 100
+  moneyReward: 1
