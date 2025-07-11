@@ -9,6 +9,7 @@ public class UIInteface:MonoBehaviour
     public GameObject GatlingTurret;
     public GameObject flamerTurret;
     public GameObject turretMenu;
+    public TMPro.TMP_Text waveText;
 
     GameObject itemPrefab;
     GameObject focusObj;
@@ -42,12 +43,19 @@ public class UIInteface:MonoBehaviour
         if(Physics.Raycast(ray, out RaycastHit hit))
         {
             focusObj = Instantiate(itemPrefab, hit.point, itemPrefab.transform.rotation);
-            foreach (var col in focusObj.GetComponentsInChildren<Collider>())
+            foreach(var col in focusObj.GetComponentsInChildren<Collider>())
                 col.enabled = false;
         }
     }
     void Update()
     {
+        if(LevelManager.wavesEmitted < LevelManager.numberOfWaves)
+        {
+            waveText.text = "Wave: " + (LevelManager.wavesEmitted + 1) + "/" + LevelManager.numberOfWaves;
+
+        }
+
+
         bool inputBegan = IsInputBegan();
         bool inputHeld = IsInputHeld();
         bool inputEnded = IsInputEnded();
@@ -70,7 +78,7 @@ public class UIInteface:MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(inputPosition);
             if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ~(1 << LayerMask.NameToLayer("Turret"))))
             {
-                
+
                 focusObj.transform.position = hit.point;
             }
         }
@@ -83,7 +91,7 @@ public class UIInteface:MonoBehaviour
             {
                 hit.collider.gameObject.tag = "Occupied";
                 focusObj.transform.position = new Vector3(hit.collider.gameObject.transform.position.x, focusObj.transform.position.y, hit.collider.gameObject.transform.position.z);
-                foreach (var col in focusObj.GetComponentsInChildren<Collider>())
+                foreach(var col in focusObj.GetComponentsInChildren<Collider>())
                     col.enabled = true;
             }
             else
