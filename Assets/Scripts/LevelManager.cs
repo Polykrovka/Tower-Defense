@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
     static int totalEnemies = 0;
     public static int numberOfWaves = 4;
     public static int wavesEmitted = 0;
-    public static int totalMoney = 0;
+    public static int totalMoney = 100;
     public static int totalLives = 10;
     static bool levelOver = false;
     static bool nextWave = false;

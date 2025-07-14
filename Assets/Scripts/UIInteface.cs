@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class UIInteface:MonoBehaviour
 {
-    public GameObject RocketLauncherTurret;
-    public GameObject GatlingTurret;
-    public GameObject flamerTurret;
+    public Shoot RocketLauncherTurret;
+    public Shoot GatlingTurret;
+    public Shoot flamerTurret;
     public GameObject turretMenu;
     public TMPro.TMP_Text waveText;
     public TMPro.TMP_Text moneyText;
@@ -21,7 +21,7 @@ public class UIInteface:MonoBehaviour
     public Button setSpeedTwo;
     public Button setSpeedThree;
 
-
+    public AudioSource wrongSound;
 
 
     GameObject itemPrefab;
@@ -57,20 +57,47 @@ public class UIInteface:MonoBehaviour
 
     public void CreteRocketLauncher()
     {
-        itemPrefab = RocketLauncherTurret;
-        CreateItemForButton();
+        if(LevelManager.totalMoney >= RocketLauncherTurret.turretDetails.moneyCost)
+        {
+
+            itemPrefab = RocketLauncherTurret.gameObject;
+            CreateItemForButton();
+            LevelManager.totalMoney -= (int)RocketLauncherTurret.turretDetails.moneyCost;
+        }
+        else
+        {
+            wrongSound.Play();
+        }
     }
 
     public void CreateGatling()
     {
-        itemPrefab = GatlingTurret;
-        CreateItemForButton();
+        if(LevelManager.totalMoney >= GatlingTurret.turretDetails.moneyCost)
+        {
+            itemPrefab = GatlingTurret.gameObject;
+            CreateItemForButton();
+            LevelManager.totalMoney -= (int)GatlingTurret.turretDetails.moneyCost;
+
+        }
+        else
+        {
+            wrongSound.Play();
+        }
     }
 
     public void CreateFlamer()
     {
-        itemPrefab = flamerTurret;
-        CreateItemForButton();
+        if(LevelManager.totalMoney >= flamerTurret.turretDetails.moneyCost)
+        {
+            itemPrefab = flamerTurret.gameObject;
+            CreateItemForButton();
+            LevelManager.totalMoney -= (int)flamerTurret.turretDetails.moneyCost;
+
+        }
+        else
+        {
+            wrongSound.Play();
+        }
     }
 
     public void CloseTurretMenu()
@@ -143,6 +170,7 @@ public class UIInteface:MonoBehaviour
             }
             else
             {
+                LevelManager.totalMoney += (int)focusObj.GetComponent<Shoot>().turretDetails.moneyCost;
                 Destroy(focusObj);
             }
 
