@@ -3,13 +3,14 @@ using UnityEngine.Pool;
 public class LevelManager : MonoBehaviour
 {
     Spawn[] spawnPoints;
-    static int totalEnemies = 0;
+    public static int totalEnemies = 0;
     public static int numberOfWaves = 4;
     public static int wavesEmitted = 0;
-    public static int totalMoney = 100;
+    public static int totalMoney = 500;
     public static int totalLives = 10;
-    static bool levelOver = false;
-    static bool nextWave = false;
+    public static bool levelOver = false;
+    public static bool nextWave = false;
+    public GameObject gameOverPanel;
 
     int timeBetweenWaves = 5;
 
@@ -119,6 +120,12 @@ public class LevelManager : MonoBehaviour
             }
             Invoke("ResetSpawners", timeBetweenWaves);
 
+        }
+
+        if(levelOver)
+        {
+            gameOverPanel.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }

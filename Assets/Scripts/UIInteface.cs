@@ -3,6 +3,7 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class UIInteface:MonoBehaviour
@@ -15,6 +16,7 @@ public class UIInteface:MonoBehaviour
     public TMPro.TMP_Text moneyText;
     public TMPro.TMP_Text livesText;
 
+    public TMPro.TMP_Text upgradeButtonText;
 
     public Button setSpeedPause;
     public Button setSpeedOne;
@@ -26,6 +28,8 @@ public class UIInteface:MonoBehaviour
 
     GameObject itemPrefab;
     GameObject focusObj;
+
+    private Shoot currentClickedOnTurret;
 
     private void Start()
     {
@@ -54,6 +58,21 @@ public class UIInteface:MonoBehaviour
     {
         LevelManager.setGameSpeed(0);
     }
+
+    public void PlayAgain()
+    {
+        Time.timeScale = 1;
+        LevelManager.wavesEmitted = 0;
+        LevelManager.totalMoney = 500;
+        LevelManager.totalLives = 10;
+        LevelManager.totalEnemies = 0;
+        LevelManager.numberOfWaves = 4;
+        LevelManager.levelOver = false;
+        LevelManager.nextWave = false;   
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        
+    } 
+
 
     public void CreteRocketLauncher()
     {
@@ -105,6 +124,30 @@ public class UIInteface:MonoBehaviour
         turretMenu.SetActive(false);
     }
 
+    public void SellTower()
+    {
+        LevelManager.totalMoney += (int)(currentClickedOnTurret.turretDetails.moneyCost * 0.70 + currentClickedOnTurret.turretDetails.upgradeMoneyCost * 0.50);
+        Destroy(currentClickedOnTurret.gameObject, 0.1f);
+        CloseTurretMenu();
+    }
+
+    public void UpgradeTower()
+    {
+
+        if(LevelManager.totalMoney >= currentClickedOnTurret.turretDetails.upgradeMoneyCost)
+        {
+            LevelManager.totalMoney -= (int) currentClickedOnTurret.turretDetails.upgradeMoneyCost;
+            currentClickedOnTurret.turretDetails.damage *= 1.2f;
+            currentClickedOnTurret.turretDetails.upgradeMoneyCost *= 2f;
+            upgradeButtonText.text = "Upgrade (" + (int)currentClickedOnTurret.turretDetails.upgradeMoneyCost + ")";
+        }
+        else
+        {
+            wrongSound.Play();
+        }
+
+    }
+
     void CreateItemForButton()
     {
         Ray ray = Camera.main.ScreenPointToRay(GetInputPosition());
@@ -144,6 +187,8 @@ public class UIInteface:MonoBehaviour
                 hit.collider.gameObject.CompareTag("Turret"))
             {
                 turretMenu.transform.position = inputPosition;
+                currentClickedOnTurret = hit.collider.gameObject.GetComponent<Shoot>();
+                upgradeButtonText.text = "Upgrade (" + (int)currentClickedOnTurret.turretDetails.upgradeMoneyCost + ")";
                 turretMenu.SetActive(true);
             }
         }
