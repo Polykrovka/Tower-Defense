@@ -11,7 +11,9 @@ public class UIInteface:MonoBehaviour
     public Shoot RocketLauncherTurret;
     public Shoot GatlingTurret;
     public Shoot flamerTurret;
+    public Shoot TrashTurret;
     public GameObject turretMenu;
+    public GameObject buildTurretMenu;
     public TMPro.TMP_Text waveText;
     public TMPro.TMP_Text moneyText;
     public TMPro.TMP_Text livesText;
@@ -23,6 +25,10 @@ public class UIInteface:MonoBehaviour
     public Button setSpeedTwo;
     public Button setSpeedThree;
 
+    public Button buildButton;
+    public Button XbuildButton;
+
+
     public AudioSource wrongSound;
 
 
@@ -33,6 +39,7 @@ public class UIInteface:MonoBehaviour
 
     private void Start()
     {
+        buildTurretMenu.SetActive(false);
         setSpeedPause.onClick.AddListener(SpeedPauseClicked);
         setSpeedOne.onClick.AddListener(SpeedOneClicked);
         setSpeedTwo.onClick.AddListener(SpeedTwoClicked);
@@ -72,6 +79,20 @@ public class UIInteface:MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         
     } 
+
+    public void OpenBuildMenu()
+    {
+        buildTurretMenu.SetActive(true);
+        buildButton.gameObject.SetActive(false);
+        XbuildButton.gameObject.SetActive(true);
+    }
+
+    public void CloseBuildMenu()
+    {
+        buildTurretMenu.SetActive(false);
+        buildButton.gameObject.SetActive(true);
+        XbuildButton.gameObject.SetActive(false);
+    }
 
 
     public void CreteRocketLauncher()
@@ -119,6 +140,21 @@ public class UIInteface:MonoBehaviour
         }
     }
 
+    public void CreateTrashTurret()
+    {
+        if(LevelManager.totalMoney >= TrashTurret.turretDetails.moneyCost)
+        {
+            itemPrefab = TrashTurret.gameObject;
+            CreateItemForButton();
+            LevelManager.totalMoney -= (int)TrashTurret.turretDetails.moneyCost;
+
+        }
+        else
+        {
+            wrongSound.Play();
+        }
+    }
+
     public void CloseTurretMenu()
     {
         turretMenu.SetActive(false);
@@ -157,6 +193,8 @@ public class UIInteface:MonoBehaviour
             foreach(var col in focusObj.GetComponentsInChildren<Collider>())
                 col.enabled = false;
         }
+
+        CloseBuildMenu();
     }
     void Update()
     {
@@ -218,6 +256,7 @@ public class UIInteface:MonoBehaviour
                 LevelManager.totalMoney += (int)focusObj.GetComponent<Shoot>().turretDetails.moneyCost;
                 Destroy(focusObj);
             }
+            OpenBuildMenu();
 
             focusObj = null;
         }
