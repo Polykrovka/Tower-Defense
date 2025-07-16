@@ -113,13 +113,7 @@ public class LevelManager : MonoBehaviour
         if(nextWave)
         {
             nextWave = false;
-            foreach(Spawn sp in spawnPoints)
-            {
-                totalEnemies += sp.maxCountEnemys;
-                sp.Restart();
-            }
             Invoke("ResetSpawners", timeBetweenWaves);
-
         }
 
         if(levelOver)
