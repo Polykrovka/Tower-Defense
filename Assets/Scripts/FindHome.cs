@@ -42,14 +42,18 @@ public class FindHome : MonoBehaviour
 
         if(aoeRadius > 0f)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, aoeRadius);
+            ReduceHealth(power);
+
+            Vector3 basePos = new Vector3(transform.position.x, -1f, transform.position.z);
+            Vector3 topPos = new Vector3(transform.position.x, 6f, transform.position.z);
+            Collider[] hitColliders = Physics.OverlapCapsule(basePos, topPos, aoeRadius);
             foreach(var hit in hitColliders)
             {
                 if(hit.CompareTag("Enemy"))
                 {
                     FindHome enemy = hit.GetComponent<FindHome>();
-                    if(enemy != null)
-                        enemy.ReduceHealth(power);
+                    if(enemy != null && enemy != this)
+                        enemy.ReduceHealth(power * 0.5f);
                 }
             }
         }

@@ -18,5 +18,6 @@ MonoBehaviour:
   RotationSpeed: 5
   reloadTime: 3
   angleAccuracy: 25
-  aoeRadius: 3
+  aoeRadius: 4
   moneyCost: 40
+  upgradeMoneyCost: 20

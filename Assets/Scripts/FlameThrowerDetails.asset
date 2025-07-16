@@ -20,3 +20,4 @@ MonoBehaviour:
   angleAccuracy: 30
   aoeRadius: 2
   moneyCost: 30
+  upgradeMoneyCost: 20
