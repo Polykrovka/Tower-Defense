@@ -26,6 +26,7 @@ public class FindHome : MonoBehaviour
         healthBar.transform.SetParent(GameObject.Find("Canvas").transform);
         healthBar.maxValue = enemyDetails.maxHealth;
         healthBar.value = enemyDetails.maxHealth;
+        healthBar.gameObject.SetActive(false);
     }
 
     public void Hit(TurretDetails turretDetails)
@@ -62,6 +63,8 @@ public class FindHome : MonoBehaviour
     {
         if(healthBar)
         {
+            healthBar.gameObject.SetActive(true);
+
             healthBar.value -= power;
             if(healthBar.value <= 0 && ai.hasPath)
             {
