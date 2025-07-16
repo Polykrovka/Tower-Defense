@@ -65,11 +65,11 @@ public class FindHome : MonoBehaviour
             healthBar.value -= power;
             if(healthBar.value <= 0 && ai.hasPath)
             {
+                LevelManager.DisplayDeathExplosion(this.transform.position + new Vector3(0, 1, 0));
                 LevelManager.totalMoney += enemyDetails.moneyReward;
                 LevelManager.RemoveEnemy();//Just decrease enemis count
                 ai.ResetPath();
 
-                LevelManager.DisplayDeathExplosion(this.transform.position + new Vector3(0, 1, 0));
                 Destroy(healthBar.gameObject);
                 Destroy(this.gameObject, 0.1f);
                 OnEnemyDeath?.Invoke(this.gameObject); // Notify subscribers about enemy death

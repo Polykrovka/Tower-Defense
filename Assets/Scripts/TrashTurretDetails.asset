@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973f6c1ba2bb29740938abf5a7deaf8f, type: 3}
   m_Name: TrashTurretDetails
   m_EditorClassIdentifier: 
-  turretType: 0
-  damage: 1
+  turretType: 3
+  damage: 10
   accuracy: 70
   RotationSpeed: 2
   reloadTime: 2
